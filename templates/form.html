@@ -1,4 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1>My name is andre</h1>
+<form action="/form" method="post">
+    <select id='test' name='test'>
+        <option value="3">
+            Test 3
+        </option>
+    </select>
+    <input type="submit" value="Predict!"/>
+</form>
 {% endblock %}
