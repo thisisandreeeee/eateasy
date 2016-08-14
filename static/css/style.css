@@ -25,6 +25,15 @@ body.loading .loading-modal {
     display: block;
 }
 
+.landing_box {
+    position:absolute; /*it can be fixed too*/
+    left:0; right:0;
+    top:0; bottom:0;
+    margin:auto;
+    width: 95%;
+    height: auto;
+}
+
 .results_box {
     width: 80%;
     height: 75%;
