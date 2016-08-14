@@ -13,13 +13,15 @@ def form():
         dic['email'] = request.form.get('inputEmail')
         dic['dietary_preference'] = request.form.getlist('dietary_preference')
         dic['budget'] = request.form.get('budget')
-        dic['location'] = request.form.get('autocomplete')
+        loc = request.form.get('autocomplete')
+        if loc == '':
+            loc = '88 Colin P Kelly Jr St, San Francisco, CA 94107'
+        dic['location'] = loc.split(",")[0].strip()
 
-        loc = '88 Colin P Kelly Jr St'
         businesses = yh.get_nearby_businesses(dic, loc)
-        limit = 3
+        limit = 3 # change this line
         business = choose_business(dic, businesses, limit)
-        return render_template('results.html', business = business)
+        return render_template('results.html', lst = business)
     return render_template('form.html')
 
 def choose_business(dic, lst, limit = 3):
@@ -44,6 +46,7 @@ def choose_business(dic, lst, limit = 3):
             count += 1
         if count == limit:
             return all_items
+    print(all_items)
     return all_items if all_items else None
 
 @app.route("/") #TODO: temporary, remove later

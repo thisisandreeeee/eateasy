@@ -4,7 +4,16 @@
     <img src="{{ url_for('static', filename='images/food.jpg') }}" class="bg_img" />
 
     <div class="results_box">
-        <h1>The restaurant you should go to is {{ business }}.</h1>
+        <!--h3>The restaurant you should go to is {{ business }}.</h2-->
+        <div class='list-group'>
+        <a href="{{business.url}}" class="list-group-item">
+        	<h4 class="list-group-item-heading">{{business.name}}</h4>
+        	<h4 class="list-group-item-text">Address: {{business.address}}</h4>
+        	<h4 class="list-group-item-text">Rating: {{business.rating}}</h4>
+        	<h4 class="list-group-item-text">Contact No: {{business.contact}}</h4>
+        	
+        </a>
+        </div>
     </div>
 </div>
 {% endblock %}
