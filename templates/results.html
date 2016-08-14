@@ -3,11 +3,11 @@
 <div class="container">
     <img src="{{ url_for('static', filename='images/food.jpg') }}" class="bg_img" />
 
+    <h2>{{coords}}</h2>
     <div class="results_box">
         <!--h3>The restaurant you should go to is {{ business }}.</h2-->
         <div class='list-group'>
         {% if lst: %}
-
             {% for business in lst: %}
                 <a href="{{business.url}}" class="list-group-item">
                 	<h3 class="list-group-item-heading">{{business['name']}}</h3>
@@ -23,7 +23,8 @@
             <h1>No restaurants matched your search, please go back and refine your parameters.</h1>
         {% endif %}
         </div>
-        <!--div id="map" style="width: 500px; height: 400px;"></div-->
+        <!-- <div id="map"></div> -->
+        <!-- <a href="/maps">Hi akshay, please click this to test the route</a> -->
     </div>
 </div>
 {% endblock %}
