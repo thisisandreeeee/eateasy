@@ -6,13 +6,19 @@
     <div class="results_box">
         <!--h3>The restaurant you should go to is {{ business }}.</h2-->
         <div class='list-group'>
-        <a href="{{business.url}}" class="list-group-item">
-        	<h4 class="list-group-item-heading">{{business.name}}</h4>
-        	<h4 class="list-group-item-text">Address: {{business.address}}</h4>
-        	<h4 class="list-group-item-text">Rating: {{business.rating}}</h4>
-        	<h4 class="list-group-item-text">Contact No: {{business.contact}}</h4>
-        	
-        </a>
+        {% if lst: %}
+            {% for business in lst: %}
+                <a href="{{business.url}}" class="list-group-item">
+                	<h3 class="list-group-item-heading">{{business['name']}}</h3>
+                	<h4 class="list-group-item-text"><b>Address</b>: {{ ', '.join(business['address']) }}</h4>
+                	<h4 class="list-group-item-text"><b>Rating</b>: {{business['rating']}}</h4>
+                	<h4 class="list-group-item-text"><b>Contact No</b>: {{business['contact']}}</h4>
+
+                </a>
+            {% endfor %}
+        {% else %}
+            <h1>No restaurants matched your search, please go back and refine your parameters.</h1>
+        {% endif %}
         </div>
     </div>
 </div>
