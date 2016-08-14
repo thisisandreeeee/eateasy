@@ -16,7 +16,7 @@ class YelpHandler:
     def get_nearby_businesses(self, dic, location):
         params = {
             'lang': 'en',
-            'limit': '20',
+            'limit': '15',
             'category_filter': ','.join([cat for cat in dic['dietary_preference'] if dic['dietary_preference']])
         }
         businesses = self.client.search(location, **params).businesses
