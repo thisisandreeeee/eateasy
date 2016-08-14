@@ -3,11 +3,13 @@ from yelp_handler import YelpHandler
 import requests
 from bs4 import BeautifulSoup
 from geopy.geocoders import Nominatim
+from ibm_handler import IBMHandler
 import watsonibmtoneanalyzer
 
 app = Flask(__name__)
 
 yh = YelpHandler()
+ih = IBMHandler()
 
 @app.route("/form", methods=['GET', 'POST'])
 def form():
@@ -48,8 +50,10 @@ def choose_business(dic, lst, limit = 3):
             all_items.append(item)
             count += 1
         if count == limit:
-            return all_items
-    print(all_items)
+            break
+    for biz in all_items:
+        joy_score = ih.twitterInfo(biz['name'])
+        biz['joy'] = joy_score
     return all_items if all_items else None
 
 # AKSHAY: i have added a new route here that you can reference
@@ -64,7 +68,7 @@ def maps(address=None):
     print(s)
     location = geolocator.geocode(s)
     return render_template("maps.html",address=location)
-    
+
 @app.route("/tweets")
 @app.route("/tweets/<business>")
 def tweets(business=None):
@@ -74,7 +78,7 @@ def tweets(business=None):
 
 @app.route("/") #TODO: temporary, remove later
 def main():
-    return render_template('results.html')
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(debug = True)
