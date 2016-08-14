@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+
+<div class="container-fluid">
+<div class='list-group'>
+        {% if result: %}
+        	
+            {% for status in result.tweets: %}
+            		<div class="list-group-item">
+                	<h3 class="list-group-item-heading">{{status.user.name}}</h3>
+                	<img src="{{status.user.profile_image_url}}"/>
+                	<h4 class="list-group-item-text"><b>Tweet</b>: {{status.text}}</h4>
+                	</div>
+            {% endfor %}
+        {% else %}
+            <h1>No restaurants matched your search, please go back and refine your parameters.</h1>
+        {% endif %}
+</div>
+</div>
+{% endblock %}
+
+
+for status in temp:
+        print(status.user.name,status.user.profile_image_url , status.text,type(status.text))
+    '''
