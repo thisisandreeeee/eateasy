@@ -1,11 +1,48 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="/form" method="post">
-    <select id='test' name='test'>
-        <option value="3">
-            Test 3
-        </option>
-    </select>
-    <input type="submit" value="Predict!"/>
+<br>
+<br>
+<div class="container-fluid">
+<form class="form-horizontal" method="post" action="/form">
+  <fieldset>
+    <!--legend>Legend</legend-->
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Dietary Preferences</label>
+      <div class="col-lg-8">
+		<select multiple="" id="dietary_preference" name="dietary_preference" class="form-control">
+          <option>Vegetarian</option>
+          <option>Vegan</option>
+          <option>Meat</option>
+          <option>Gluten free</option>
+          <option>Non dairy</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Budget</label>
+      <div class="col-lg-8">
+        <select class="form-control" id="budget" name="budget">
+          <option>1-10</option>
+          <option>10-20</option>
+          <option>20-50</option>
+          <option>50+</option>
+        </select>
+        <br>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
 </form>
+</div>
 {% endblock %}
