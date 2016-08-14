@@ -2,6 +2,9 @@ from flask import Flask, render_template, request
 from yelp_handler import YelpHandler
 import requests
 from bs4 import BeautifulSoup
+from geopy.geocoders import Nominatim
+import watsonibmtoneanalyzer
+
 app = Flask(__name__)
 
 yh = YelpHandler()
@@ -51,10 +54,23 @@ def choose_business(dic, lst, limit = 3):
 
 # AKSHAY: i have added a new route here that you can reference
 @app.route("/maps")
-def maps():
+@app.route("/maps/<address>")
+def maps(address=None):
     # if you want to return a html file called maps.html, uncomment the following line. you can pass an object to the render_template, kind of like what I did for the /form route
-    # return render_template("maps.html")
-    return "HI"
+    geolocator = Nominatim()
+    print(address,type(address))
+    s=address.split(', ')
+    add=(" ").join(s)
+    print(s)
+    location = geolocator.geocode(s)
+    return render_template("maps.html",address=location)
+    
+@app.route("/tweets")
+@app.route("/tweets/<business>")
+def tweets(business=None):
+    # if you want to return a html file called maps.html, uncomment the following line. you can pass an object to the render_template, kind of like what I did for the /form route
+    result= watsonibmtoneanalyzer.TwitterInfo(business)
+    return render_template("tweets.html",result=result)
 
 @app.route("/") #TODO: temporary, remove later
 def main():
