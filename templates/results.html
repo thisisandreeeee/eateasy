@@ -7,20 +7,25 @@
         <!--h3>The restaurant you should go to is {{ business }}.</h2-->
         <div class='list-group'>
         {% if lst: %}
+        	
             {% for business in lst: %}
                 <a href="{{business.url}}" class="list-group-item">
                 	<h3 class="list-group-item-heading">{{business['name']}}</h3>
-                	<h4 class="list-group-item-text"><b>Address</b>: {{ ', '.join(business['address']) }}</h4>
+                	<h4 class="business-address list-group-item-text"><b>Address</b>: {{ ', '.join(business['address']) }}</h4>
                 	<h4 class="list-group-item-text"><b>Rating</b>: {{business['rating']}}</h4>
                 	<h4 class="list-group-item-text"><b>Contact No</b>: {{business['contact']}}</h4>
-
-                </a>
+            	</a>
+            	<a href="tweets/{{business['name']}}"><button class="btn btn-block btn-primary">See what people are tweeting!</button></a>
+            	<a href="/maps/{{business['address']}}"><button class="btn btn-primary btn-block">Get Directions</button></a>
             {% endfor %}
         {% else %}
             <h1>No restaurants matched your search, please go back and refine your parameters.</h1>
         {% endif %}
         </div>
+        <!--div id="map" style="width: 500px; height: 400px;"></div-->
         <a href="/maps">Hi akshay, please click this to test the route</a>
     </div>
 </div>
 {% endblock %}
+
+
