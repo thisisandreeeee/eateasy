@@ -1,13 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
-
-<head>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-</head>
 <br>
 <br>
 <div class="container-fluid">
-<form class="form-horizontal" method="post" action="form_handler.py">
+<form class="form-horizontal" method="post" action="/form">
   <fieldset>
     <!--legend>Legend</legend-->
     <div class="form-group">
@@ -56,6 +52,4 @@
   </fieldset>
 </form>
 </div>
-
-
 {% endblock %}
