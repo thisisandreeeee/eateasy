@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Eateasy #oshack</title>
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<style>
+		@import url("https://fonts.googleapis.com/css?family=Lato");
+		* {
+			-webkit-transition: all 0.5s ease;
+			transition: all 0.5s ease;
+			box-sizing: border-box;
+		}
+		body {
+			-webkit-perspective: 300px;
+			perspective: 300px;
+			font-family: 'Lato', Arial, sans-serif;
+			background: url('http://localhost:5000/static/images/gradient.jpg')
+            50% 50%
+            no-repeat;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-webkit-justify-content: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			-ms-flex-align: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+			text-transform: uppercase;
+			color: white;
+			font-size: 18px;
+			letter-spacing: 2px;
+			overflow: hidden;
+		}
+		body .container {
+			background: transparent;
+			width: 200px;
+			height: 60px;
+			box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+			line-height: 60px;
+			text-align: center;
+			-webkit-transform: rotateX(0deg);
+			transform: rotateX(0deg);
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+		body .container:hover {
+			cursor: pointer;
+		}
+		body .container .front {
+			width: 200px;
+			height: 60px;
+			background: #FC92A2;
+			position: absolute;
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+			border-radius: 4px;
+			z-index: 2;
+			-webkit-transform: rotateX(0deg);
+			transform: rotateX(0deg);
+		}
+		body .container .back {
+			width: 200px;
+			height: 60px;
+			position: absolute;
+			background: #FC92A2;
+			border-radius: 4px;
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+			-webkit-transform: rotateX(180deg);
+			transform: rotateX(180deg);
+		}
+
+	</style>
+	<div class="container">
+        <a href="/form" style="text-decoration:none; color:#51555E;"><div class="front">
+            I'M HUNGRY
+        </div></a>
+	</div>
+	<script>
+		(function () {
+			$(document).ready(function () {
+				var count, rotateX;
+				rotateX = 0;
+				count = 0;
+				$('.container').on('mousedown', function () {
+					rotateX += 180;
+					$('body').css({ 'transform': 'scale(1.2)' });
+					if (count % 2 === 0) {
+						return $('.container').css({ 'box-shadow': '0px 32px 56px rgba(0,0,0,.1)' });
+					} else {
+						return $('.container').css({ 'box-shadow': '0px -32px 56px rgba(0,0,0,.1)' });
+					}
+				});
+				return $('.container').on('mouseup', function () {
+					$(this).css({ 'transform': 'rotateX(' + rotateX + 'deg)' });
+					$('body').css({ 'transform': 'scale(1)' });
+					if (count % 2 === 0) {
+						$('body').css({ 'background': '#ccc' });
+						$('.container').css({ 'box-shadow': '0px -2px 4px rgba(0,0,0,.1)' });
+					} else {
+						$('body').css({ 'background': '#2196F3' });
+						$('.container').css({ 'box-shadow': '0px 2px 4px rgba(0,0,0,.1)' });
+					}
+					return count++;
+				});
+			});
+		}.call(this));
+	</script>
+</body>
+</html>
