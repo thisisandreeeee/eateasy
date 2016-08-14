@@ -27,7 +27,7 @@ body.loading .loading-modal {
 
 .results_box {
     width: 80%;
-    height: 60%;
+    height: 75%;
     /*height: 600px;*/
     background-color: #333333;
     opacity: 0.85;
