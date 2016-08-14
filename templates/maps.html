@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if address: %}
+    <h2>{{address.latitude}}</h2>
+    <h2>{{address.longitude}}</h2>
+    
+{% else: %}
+	<h2>No address returned</h2>
+{% endif %}
+{% endblock %}
