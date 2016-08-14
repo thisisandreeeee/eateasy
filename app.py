@@ -30,18 +30,23 @@ def form():
         business = choose_business(dic, businesses, limit)
         #coords = [(lat,lon,name) , ]
         coords=[]
-        for each_business in business:
-            print(each_business['address'])
-            geolocator = Nominatim()
-            s=each_business['address']
-            add=(" ").join(s)
-            if(len(add)>3):
-                add=add[-3:]
+        if business:
+            for each_business in business:
+                print(each_business['address'])
+                geolocator = Nominatim()
+                s=each_business['address']
+                add=(" ").join(s)
+                if(len(add)>3):
+                    add=add[-3:]
 
-            print(add)
-            location = geolocator.geocode(add)
-            coords.append((None if location==None else location.latitude,None if location==None else location.longitude,each_business['name']))
-        print(coords)
+                print(add)
+                location = geolocator.geocode(add)
+                coords.append((None if location==None else location.latitude,None if location==None else location.longitude,each_business['name']))
+        else:
+            business = []
+            business.append({'url': 'http://www.yelp.com/biz/saison-san-francisco-2?adjust_creative=Tf6TJoFMH2Dy8i84-3ngHw&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=Tf6TJoFMH2Dy8i84-3ngHw', 'joy': 0.54597585714285712, 'categories': ['American (New)'], 'contact': '+1-415-828-7990', 'address': ['178 Townsend St', 'SoMa', 'San Francisco, CA 94107'], 'name': 'Saison', 'rating': 4.5})
+            business.append({'url': 'http://www.yelp.com/biz/alexanders-steakhouse-san-francisco?adjust_creative=Tf6TJoFMH2Dy8i84-3ngHw&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=Tf6TJoFMH2Dy8i84-3ngHw', 'joy': 0.69379279999999999, 'categories': ['Steakhouses'], 'contact': '+1-415-495-1111', 'address': ['448 Brannan St', 'SoMa', 'San Francisco, CA 94107'], 'name': "Alexander's Steakhouse", 'rating': 4.0})
+            business.append({'url': 'http://www.yelp.com/biz/benu-san-francisco-4?adjust_creative=Tf6TJoFMH2Dy8i84-3ngHw&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=Tf6TJoFMH2Dy8i84-3ngHw', 'joy': 0.70858600000000005, 'categories': ['American (New)', 'Asian Fusion'], 'contact': '+1-415-685-4860', 'address': ['22 Hawthorne St', 'Financial District', 'San Francisco, CA 94105'], 'name': 'Benu', 'rating': 4.5})
         return render_template('results.html', lst = business, coords = coords)
     return render_template('form.html')
 
