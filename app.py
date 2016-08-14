@@ -49,6 +49,13 @@ def choose_business(dic, lst, limit = 3):
     print(all_items)
     return all_items if all_items else None
 
+# AKSHAY: i have added a new route here that you can reference
+@app.route("/maps")
+def maps():
+    # if you want to return a html file called maps.html, uncomment the following line. you can pass an object to the render_template, kind of like what I did for the /form route
+    # return render_template("maps.html")
+    return "HI"
+
 @app.route("/") #TODO: temporary, remove later
 def main():
     return render_template('results.html')
