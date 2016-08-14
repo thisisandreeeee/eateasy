@@ -4,6 +4,8 @@ import requests
 from bs4 import BeautifulSoup
 from geopy.geocoders import Nominatim
 import watsonibmtoneanalyzer
+import ast
+from urllib.parse import quote
 
 app = Flask(__name__)
 
@@ -24,7 +26,21 @@ def form():
         businesses = yh.get_nearby_businesses(dic, loc)
         limit = 3 # change this line
         business = choose_business(dic, businesses, limit)
-        return render_template('results.html', lst = business)
+        #coords = [(lat,lon,name) , ]
+        coords=[]
+        for each_business in business:
+            print(each_business['address'])
+            geolocator = Nominatim()
+            s=each_business['address']
+            add=(" ").join(s)
+            if(len(add)>3):
+                add=add[-3:]
+
+            print(add)
+            location = geolocator.geocode(add)
+            coords.append((None if location==None else location.latitude,None if location==None else location.longitude,each_business['name'])) 
+        print(coords)
+        return render_template('results.html', lst = business, coords = coords)
     return render_template('form.html')
 
 def choose_business(dic, lst, limit = 3):
@@ -57,19 +73,29 @@ def choose_business(dic, lst, limit = 3):
 @app.route("/maps/<address>")
 def maps(address=None):
     # if you want to return a html file called maps.html, uncomment the following line. you can pass an object to the render_template, kind of like what I did for the /form route
+    '''
     geolocator = Nominatim()
     print(address,type(address))
     s=address.split(', ')
     add=(" ").join(s)
     print(s)
     location = geolocator.geocode(s)
-    return render_template("maps.html",address=location)
+    str=""
+    for i in address:
+        str=str+i
+    print(address, type(address))
+    '''
+    add=' '.join(ast.literal_eval(address))
+    #url_esc_str=quote(add)
+    add=add.replace(' ','+')
+    return render_template("maps.html",address=add)
     
 @app.route("/tweets")
 @app.route("/tweets/<business>")
 def tweets(business=None):
     # if you want to return a html file called maps.html, uncomment the following line. you can pass an object to the render_template, kind of like what I did for the /form route
     result= watsonibmtoneanalyzer.TwitterInfo(business)
+    print(result)
     return render_template("tweets.html",result=result)
 
 @app.route("/") #TODO: temporary, remove later

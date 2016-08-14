@@ -2,10 +2,17 @@
 {% block body %}
 
 {% if address: %}
-    <h2>{{address.latitude}}</h2>
-    <h2>{{address.longitude}}</h2>
-    
+<!-- <h1>{{address}}</h1> -->
+    <iframe
+  width="1024"
+  height="768"
+  frameborder="0" style="border:0; margin:0; width:100%; height:100%"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCI45SUFxWc5S6zt9KuUH4i7pi8_WXwvy8&q={{address}}" allowfullscreen>
+</iframe>
 {% else: %}
 	<h2>No address returned</h2>
 {% endif %}
 {% endblock %}
+
+
+
