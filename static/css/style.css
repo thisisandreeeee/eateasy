@@ -70,3 +70,47 @@ body.loading .loading-modal {
     margin-left: -512px;   /* 50% */
   }
 }
+
+.form_box {
+    width: 75%;
+    height: 95%;
+    /*height: 600px;*/
+    background-color: #ffffff;
+    opacity: 0.75;
+    border-radius: 10px;
+
+    position:absolute; /*it can be fixed too*/
+    left:0; right:0;
+    top:0; bottom:0;
+    margin:auto;
+
+    /*this to solve "the content will not be cut when the window is smaller than the content": */
+    max-width:100%;
+    max-height:100%;
+    overflow:auto;
+}
+
+.form_img {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  .form_img {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}

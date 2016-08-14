@@ -1,56 +1,60 @@
 {% extends "layout.html" %}
 {% block body %}
-
-
-<br>
-<br>
-<div class="container-fluid">
-<form class="form-horizontal" method="post" action="/form">
-  <fieldset>
-    <!--legend>Legend</legend-->
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-8">
-        <input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group">
-    	<label for="location" class="col-lg-2 control-label">Location</label>
-    	<div class="col-lg-8">
-		<input type="text" class="form-control" name="autocomplete" id="autocomplete"/>
+<img src="{{ url_for('static', filename='images/bg.jpg') }}" class="form_img" />
+<div class="form_box">
+    <br>
+    <br>
+    <div class="container-fluid">
+    <form class="form-horizontal" method="post" action="/form">
+      <fieldset>
+        <!--legend>Legend</legend-->
+        <div class="form-group">
+          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+          <div class="col-lg-8">
+            <input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
+          </div>
         </div>
+        <div class="form-group">
+        	<label for="location" class="col-lg-2 control-label">Location</label>
+        	<div class="col-lg-8">
+    		<input type="text" class="form-control" name="autocomplete" id="autocomplete"/>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="select" class="col-lg-2 control-label">Dietary Preferences</label>
+          <div class="col-lg-8">
+    		<select multiple="" id="dietary_preference" name="dietary_preference" class="form-control">
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="meats">Meat</option>
+              <option value="gluten_free">Gluten free</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="select" class="col-lg-2 control-label">Budget</label>
+          <div class="col-lg-8">
+            <select class="form-control" id="budget" name="budget">
+              <option>1-10</option>
+              <option>10-20</option>
+              <option>20-50</option>
+              <option>50+</option>
+            </select>
+            <br>
+          </div>
+        </div>
+        <p style="color: red;">
+            If your budget is too low, this query might take awhile.
+        </p>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="reset" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="modal-display">Submit</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
     </div>
-    <div class="form-group">
-      <label for="select" class="col-lg-2 control-label">Dietary Preferences</label>
-      <div class="col-lg-8">
-		<select multiple="" id="dietary_preference" name="dietary_preference" class="form-control">
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-          <option value="meats">Meat</option>
-          <option value="gluten_free">Gluten free</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="select" class="col-lg-2 control-label">Budget</label>
-      <div class="col-lg-8">
-        <select class="form-control" id="budget" name="budget">
-          <option>1-10</option>
-          <option>10-20</option>
-          <option>20-50</option>
-          <option>50+</option>
-        </select>
-        <br>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary" id="modal-display">Submit</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
 </div>
 <div class="loading-modal"></div>
 {% endblock %}
